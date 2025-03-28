@@ -1,0 +1,188 @@
+#if !defined(INPUT_H_CWINDOW_INCLUDE)
+#define INPUT_H_CWINDOW_INCLUDE
+
+#include <stdint.h>
+
+#include <xkbcommon/xkbcommon-keysyms.h>
+
+// KP = keypad.
+typedef enum cw_key {
+    CW_KEY_BACKSPACE,
+    CW_KEY_TAB,
+    CW_KEY_ESCAPE,
+    CW_KEY_DELETE,
+    CW_KEY_SCROLL_LOCK,
+    CW_KEY_NUM_LOCK,
+
+    CW_KEY_LEFT,
+    CW_KEY_UP,
+    CW_KEY_RIGHT,
+    CW_KEY_DOWN,
+
+    CW_KEY_PAGE_UP,
+    CW_KEY_PAGE_DOWN,
+
+    CW_KEY_KP_SPACE,
+    CW_KEY_KP_TAB,
+    CW_KEY_KP_ENTER,
+    CW_KEY_KP_LEFT,
+    CW_KEY_KP_UP,
+    CW_KEY_KP_RIGHT,
+    CW_KEY_KP_DOWN,
+    CW_KEY_KP_PAGE_UP,
+    CW_KEY_KP_PAGE_DOWN,
+    CW_KEY_KP_INSERT,
+    CW_KEY_KP_DELETE,
+    CW_KEY_KP_EQUAL,
+    CW_KEY_KP_MULITPLY,
+    CW_KEY_KP_ADD,
+    CW_KEY_KP_COMMA,
+    CW_KEY_KP_DECIMAL,
+    CW_KEY_KP_DIVIDE,
+
+    CW_KEY_KP_0,
+    CW_KEY_KP_1,
+    CW_KEY_KP_2,
+    CW_KEY_KP_3,
+    CW_KEY_KP_4,
+    CW_KEY_KP_5,
+    CW_KEY_KP_6,
+    CW_KEY_KP_7,
+    CW_KEY_KP_8,
+    CW_KEY_KP_9,
+
+    CW_KEY_F1,
+    CW_KEY_F2,
+    CW_KEY_F3,
+    CW_KEY_F4,
+    CW_KEY_F5,
+    CW_KEY_F6,
+    CW_KEY_F7,
+    CW_KEY_F8,
+    CW_KEY_F9,
+    CW_KEY_F10,
+    CW_KEY_F11,
+    CW_KEY_F12,
+    CW_KEY_F13,
+    CW_KEY_F14,
+    CW_KEY_F15,
+    CW_KEY_F16,
+    CW_KEY_F17,
+    CW_KEY_F18,
+    CW_KEY_F19,
+    CW_KEY_F20,
+    CW_KEY_F21,
+    CW_KEY_F22,
+    CW_KEY_F23,
+    CW_KEY_F24,
+    CW_KEY_F25,
+    CW_KEY_F26,
+    CW_KEY_F27,
+    CW_KEY_F28,
+    CW_KEY_F29,
+    CW_KEY_F30,
+    CW_KEY_F31,
+    CW_KEY_F32,
+    CW_KEY_F33,
+    CW_KEY_F34,
+    CW_KEY_F35,
+
+    
+    CW_KEY_SPACE,
+    CW_KEY_EXCLAM,
+    CW_KEY_QUOTEDBL,
+    CW_KEY_NUMBERSIGN,
+    CW_KEY_DOLLAR,
+    CW_KEY_PERCENT,
+    CW_KEY_APOSTROPHE,
+    CW_KEY_QUOTERIGHT,
+    CW_KEY_PARENLEFT,
+    CW_KEY_PARENRIGHT,
+    CW_KEY_ASTERISK,
+    CW_KEY_PLUS,
+    CW_KEY_COMMA,
+    CW_KEY_MINUS,
+    CW_KEY_PERIOD,
+    CW_KEY_SLASH,
+    CW_KEY_0,
+    CW_KEY_1,
+    CW_KEY_2,
+    CW_KEY_3,
+    CW_KEY_4,
+    CW_KEY_5,
+    CW_KEY_6,
+    CW_KEY_7,
+    CW_KEY_8,
+    CW_KEY_9,
+    CW_KEY_COLON,
+    CW_KEY_SEMICOLON,
+    CW_KEY_LESS,
+    CW_KEY_EQUAL,
+    CW_KEY_GREATER,
+    CW_KEY_QUESTION,
+    CW_KEY_AT,
+    CW_KEY_A,
+    CW_KEY_B,
+    CW_KEY_C,
+    CW_KEY_D,
+    CW_KEY_E,
+    CW_KEY_F,
+    CW_KEY_G,
+    CW_KEY_H,
+    CW_KEY_I,
+    CW_KEY_J,
+    CW_KEY_K,
+    CW_KEY_L,
+    CW_KEY_M,
+    CW_KEY_N,
+    CW_KEY_O,
+    CW_KEY_P,
+    CW_KEY_Q,
+    CW_KEY_R,
+    CW_KEY_S,
+    CW_KEY_T,
+    CW_KEY_U,
+    CW_KEY_V,
+    CW_KEY_W,
+    CW_KEY_X,
+    CW_KEY_Y,
+    CW_KEY_Z,
+    CW_KEY_BRACKET_LEFT,
+    CW_KEY_BACK_SLASH,
+    CW_KEY_BRACKET_RIGHT,
+    CW_KEY_UNDER_SCORE,
+    CW_KEY_GRAVE,
+    CW_KEY_QUOTE_LEFT,
+} cw_key_code;
+
+typedef enum cw_mouse_button {
+    CW_MOUSE_BUTTON_LEFT,
+    CW_MOUSE_BUTTON_MIDDLE,
+    CW_MOUSE_BUTTON_RIGHT,
+    CW_MOUSE_BUTTON_SIDE4,
+    CW_MOUSE_BUTTON_SIDE5,
+    CW_MOUSE_BUTTON_MAX = CW_MOUSE_BUTTON_SIDE5,
+} cw_mouse_button;
+
+enum cw_key_modifier {
+    CW_KEY_MOD_CTRL, 
+    CW_KEY_MOD_SHIFT, 
+    CW_KEY_MOD_ALT, 
+    CW_KEY_MOD_SUPER, 
+    CW_KEY_MOD_NUM_LOCK, 
+    CW_KEY_MOD_CAPS_LOCK, 
+    CW_KEY_MOD_MAX = CW_KEY_MOD_CAPS_LOCK,
+};
+
+inline cw_key_code xkb_key_to_cw_key(int32_t xkb_key) {
+    cw_key_code cw_key;
+
+    switch (xkb_key) {
+        default:
+            return (cw_key_code)-1;
+    }
+
+    return cw_key;
+}
+
+#endif
