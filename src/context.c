@@ -45,7 +45,6 @@ cwindow_error_t cwindow_context_create(cwindow_context_t** context, cwindow_allo
         __context->allocator.free(__context);
         return CWINDOW_ERROR_XDG_SESSION_TYPE_UNKOWN; 
     }
-
 #endif
 
     *context = (cwindow_context_t*)__context;

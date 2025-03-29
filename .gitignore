@@ -55,9 +55,8 @@ dkms.conf
 
 bin/
 CMakeFiles/
-cmake/
 CMakeCache.txt
 Makefile
-*.cmake
+cmake_install.cmake
 compile_commands.json
 .cache/
